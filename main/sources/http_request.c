@@ -32,18 +32,19 @@ esp_err_t _http_event_handle(esp_http_client_event_t *evt)
 }
 
 
-void https_post_request()
+void https_post_request(char* site, char* data)
 {
     char local_response_buffer[1000] = {0};
 	esp_http_client_config_t config = {
-        .url = "http://httpbin.org/post",
+       // .url = "http://httpbin.org/post",
         .event_handler = _http_event_handle,
         .user_data = local_response_buffer,
     };
 
-    esp_http_client_handle_t client = esp_http_client_init(&config);
-
-    const char *post_data = "post_body";
+	esp_http_client_handle_t client = esp_http_client_init(&config);
+	//strcat(site, "/post");
+	esp_http_client_set_url(client,site);
+    const char *post_data = data;
 
     esp_http_client_set_method(client, HTTP_METHOD_POST);
     esp_http_client_set_header(client, "Content-Type", "application/json");
@@ -59,19 +60,18 @@ void https_post_request()
 }
 
 
-void https_get_request()
+void https_get_request(char* site)
 {
 	 char local_response_buffer[1000] = {0};
 
-
 	    esp_http_client_config_t config = {
-	   		.url = "http://httpbin.org",
 	        .event_handler = _http_event_handle,
 	        .user_data = local_response_buffer,
 	    };
+
 	    esp_http_client_handle_t client = esp_http_client_init(&config);
+	    esp_http_client_set_url(client,site);
 	    esp_err_t err = esp_http_client_perform(client);
-	    //err = esp_http_client_set_post_field(client, request_data, request_length);
 	    if (err == ESP_OK) {
 	        ESP_LOGI("SERG", "HTTP GET Status = %d, content_length = %d",
 	                esp_http_client_get_status_code(client),

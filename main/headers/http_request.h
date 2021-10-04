@@ -17,9 +17,6 @@
 #include "lwip/netdb.h"
 #include "lwip/dns.h"
 
-//to provide SSL sertificate
-//extern const char server_root_cert_pem_start[] asm("_binary_server_root_cert_pem_start");
-
 esp_err_t _http_event_handle(esp_http_client_event_t *evt);
 
 void https_post_request();
