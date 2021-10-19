@@ -19,4 +19,5 @@ void app_main(void){
 
 		uart_config();
 		console_start();
+		vTaskDelay(1000 / portTICK_PERIOD_MS);
 }

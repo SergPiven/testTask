@@ -40,3 +40,4 @@ void console_start();
 void array_strtok(array_t* a, char* s, const char* delim);
 void array_clear(array_t* a);
 int array_resize(array_t* a, size_t n);
+void clearBuffer();
