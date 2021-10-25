@@ -152,7 +152,7 @@ int array_resize(array_t* a, size_t n){
 }
 
 void clearBuffer(){
-   for(int i=strlen((char*)rxbuf);i>=0;i--)
+   for(int i=256;i>=0;i--)
    {
 	   rxbuf[i]='\0';
    }
